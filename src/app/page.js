@@ -1,10 +1,13 @@
 import Navbar from "@/components/Navbar";
-import Image from "next/image";
+import Newnote from "@/components/Newnote";
+import Notes from "@/components/Notes";
 
 export default function Home() {
   return (
-    <div className="h-screen w-full bg-primary">
-       <Navbar />
+    <div className="w-full bg-primary">
+      <Navbar />
+      <Newnote />
+      <Notes />
     </div>
   );
 }

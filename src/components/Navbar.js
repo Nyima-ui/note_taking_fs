@@ -5,7 +5,7 @@ import avatar from "../../public/avatar.svg";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center h-[56px] border-b w-full border-white px-3 sm:px-8 justify-between gap-5 sm:gap-20">
+    <div className="flex items-center h-[56px] border-b w-full border-white px-3 sm:px-8 justify-between gap-7 sm:gap-20">
       <Image
         src={bars}
         height={39}

@@ -8,3 +8,12 @@ body {
   --color-white: #ffffff;
   --color-accent: #fff45a;
 }
+@layer components {
+  .primary-btn{
+    @apply text-white uppercase text-sm border rounded-[5px] px-2.5 py-1 sm:px-4 sm:py-2 inline-block
+  }
+}
+.styled-scrollbar{
+   scrollbar-color: gray transparent;
+   scrollbar-width: thin;
+}
