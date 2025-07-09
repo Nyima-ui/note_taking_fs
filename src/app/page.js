@@ -4,7 +4,7 @@ import Notes from "@/components/Notes";
 
 export default function Home() {
   return (
-    <div className="w-full bg-primary">
+    <div className="w-full pb-20 bg-primary relative">
       <Navbar />
       <Newnote />
       <Notes />
