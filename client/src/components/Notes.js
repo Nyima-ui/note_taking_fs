@@ -5,7 +5,7 @@ import backIcon from "../../public/back.svg";
 import Image from "next/image.js";
 import { useEffect, useRef, useState } from "react";
 
-const Notes = () => {
+const Notes = ({ searchText }) => {
   const [selectedNote, setselectedNote] = useState(null);
   const textAreaRef = useRef(null);
   const handleViewNote = (title, content) => {
@@ -14,6 +14,14 @@ const Notes = () => {
       content,
     });
   };
+
+  const results = searchText
+    ? dummyNotes.filter(
+        (note) =>
+          note.title.toLowerCase().includes(searchText.toLowerCase()) ||
+          note.content.toLowerCase().includes(searchText.toLowerCase())
+      )
+    : dummyNotes;
 
   useEffect(() => {
     if (selectedNote && textAreaRef.current) {
@@ -68,7 +76,7 @@ const Notes = () => {
           </div>
         </div>
       ) : (
-        dummyNotes.map((note, i) => (
+        results.map((note, i) => (
           <div
             key={i}
             className="text-white border max-sm:w-full sm:w-[620px] md:w-[720px] xl:w-[1146px] overflow-hidden rounded-[5px] py-5 px-6.5 mx-auto flex items-center justify-between cursor-pointer"

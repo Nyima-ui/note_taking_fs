@@ -3,7 +3,7 @@ import bars from "../../public/bars.svg";
 import search from "../../public/search.svg";
 import avatar from "../../public/avatar.svg";
 
-const Navbar = () => {
+const Navbar = ({ searchText, setSearchText }) => {
   return (
     <div className="flex items-center h-[56px] border-b w-full border-white px-3 sm:px-8 justify-between gap-7 sm:gap-20">
       <Image
@@ -21,6 +21,8 @@ const Navbar = () => {
           placeholder="Search for a note"
           name="Search"
           id="Search"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
       </div>
       <Image
