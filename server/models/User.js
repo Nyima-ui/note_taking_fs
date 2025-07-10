@@ -15,9 +15,11 @@ export const userSchema = new Schema(
       type: String,
       required: true,
     },
+    providerId: {
+      type: String,
+    },
     password: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }

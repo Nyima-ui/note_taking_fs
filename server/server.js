@@ -1,30 +1,32 @@
-import express from 'express'; 
-import dotenv from 'dotenv';
-import cors from 'cors'
-import { connectDB } from './lib/db.js';
-import userRouter from './routes/userRoutes.js';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import { connectDB } from "./lib/db.js";
+import userRouter from "./routes/userRoutes.js";
 
-dotenv.config(); 
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { User } from "./models/User.js";
 
-const app = express(); 
-const PORT = process.env.PORT || 5000; 
+dotenv.config();
 
-connectDB(); 
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.use(cors()); 
-app.use(express.json()); 
+connectDB();
 
-app.use('/user', userRouter); 
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send("Hello world, we got the. fiqr not"); 
-})
+app.use("/user", userRouter);
+
+app.get("/", (req, res) => {
+  res.send("Hello world, we got the. fiqr not");
+});
 
 app.listen(PORT, () => {
-    console.log(`Server up and running at PORT ${PORT}`); 
-})
-
-
+  console.log(`Server up and running at PORT ${PORT}`);
+});
 
 
 
