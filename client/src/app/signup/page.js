@@ -1,42 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import logo from "../../../public/logo.svg";
 import Image from "next/image";
-
-import supabase from "../../../supabaseClient";
+import { UserContext } from "../AuthProvider";
 
 const Page = () => {
   const [state, setState] = useState("Sign Up");
-  const [session, setSession] = useState(null);
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const signUp = async (provider) => {
-    if (!["google", "github"].includes(provider)) {
-      console.error("Unsupported provider:", provider);
-      return;
-    }
-
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: provider,
-      });
-
-      if (error) console.error("Error signin in:", error.message);
-    } catch (error) {
-      console.log("Unexpected error:", error);
-    }
-  };
+  const { signUp } = useContext(UserContext);
 
   const toggleState = () => {
     if (state === "Sign Up") setState("Sign In");
@@ -47,7 +21,13 @@ const Page = () => {
       <Image src={logo} alt="Logo" height={33} width={133} />
       <div className="border border-white rounded-[5px] px-10.5 mt-15 pb-10 max-w-[370px] mx-auto">
         <h3 className="text-[19px]  text-center mt-10">{state}</h3>
-        <form className="mt-7.5 flex flex-col gap-6">
+        <form
+          className="mt-7.5 flex flex-col gap-6"
+          onSubmit={(e) => {
+            e.preventDefault();
+            signUp({ email, password, name });
+          }}
+        >
           {state === "Sign Up" && (
             <input
               type="text"
@@ -55,6 +35,8 @@ const Page = () => {
               placeholder="Name"
               id="name"
               className="input"
+              value={name}
+              onChange={(e) => setname(e.target.value)}
             />
           )}
           <input
@@ -63,6 +45,8 @@ const Page = () => {
             placeholder="Email"
             id="name"
             className="input"
+            value={email}
+            onChange={(e) => setemail(e.target.value)}
           />
           <input
             type="password"
@@ -70,6 +54,8 @@ const Page = () => {
             placeholder="Password"
             id="name"
             className="input"
+            value={password}
+            onChange={(e) => setpassword(e.target.value)}
           />
           <div className="flex justify-end">
             <button type="submit" className="primary-btn cursor-pointer">
@@ -83,13 +69,13 @@ const Page = () => {
           <div className="flex gap-5 mt-5">
             <button
               className="primary-btn cursor-pointer"
-              onClick={() => signUp("google")}
+              onClick={() => signUp({ provider: "google" })}
             >
               Google
             </button>
             <button
               className="primary-btn cursor-pointer"
-              onClick={() => signUp("github")}
+              onClick={() => signUp({ provider: "github" })}
             >
               Git Hub
             </button>
