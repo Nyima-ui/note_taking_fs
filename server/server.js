@@ -3,10 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/userRoutes.js";
-
-import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import { User } from "./models/User.js";
+import authRouter from "./routes/authRouter.js";
 
 dotenv.config();
 

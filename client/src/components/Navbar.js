@@ -1,9 +1,20 @@
+'use client'
 import Image from "next/image";
 import bars from "../../public/bars.svg";
 import search from "../../public/search.svg";
 import avatar from "../../public/avatar.svg";
+import supabase from "../../supabaseClient";
+import { useRouter } from "next/navigation";
 
 const Navbar = ({ searchText, setSearchText }) => {
+  const router = useRouter();
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (!error) router.push("/signup");
+    else console.error("Error signin out:", error.message);
+  };
+  
   return (
     <div className="flex items-center h-[56px] border-b w-full border-white px-3 sm:px-8 justify-between gap-7 sm:gap-20">
       <Image
@@ -25,13 +36,18 @@ const Navbar = ({ searchText, setSearchText }) => {
           onChange={(e) => setSearchText(e.target.value)}
         />
       </div>
-      <Image
-        src={avatar}
-        height={37}
-        width={37}
-        alt="Avatar"
-        className="cursor-pointer"
-      />
+      <div className="flex items-center gap-2">
+        <Image
+          src={avatar}
+          height={37}
+          width={37}
+          alt="Avatar"
+          className="cursor-pointer"
+        />
+        <button className="primary-btn cursor-pointer" onClick={signOut}>
+          Sign Out
+        </button>
+      </div>
     </div>
   );
 };

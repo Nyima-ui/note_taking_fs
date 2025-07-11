@@ -1,10 +1,43 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../../public/logo.svg";
 import Image from "next/image";
 
+import supabase from "../../../supabaseClient";
+
 const Page = () => {
   const [state, setState] = useState("Sign Up");
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const signUp = async (provider) => {
+    if (!["google", "github"].includes(provider)) {
+      console.error("Unsupported provider:", provider);
+      return;
+    }
+
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: provider,
+      });
+
+      if (error) console.error("Error signin in:", error.message);
+    } catch (error) {
+      console.log("Unexpected error:", error);
+    }
+  };
+
   const toggleState = () => {
     if (state === "Sign Up") setState("Sign In");
     else setState("Sign Up");
@@ -48,8 +81,18 @@ const Page = () => {
         <div className="mt-10">
           <h3>{`${state} with:`}</h3>
           <div className="flex gap-5 mt-5">
-            <button className="primary-btn cursor-pointer">Google</button>
-            <button className="primary-btn cursor-pointer">Git Hub</button>
+            <button
+              className="primary-btn cursor-pointer"
+              onClick={() => signUp("google")}
+            >
+              Google
+            </button>
+            <button
+              className="primary-btn cursor-pointer"
+              onClick={() => signUp("github")}
+            >
+              Git Hub
+            </button>
           </div>
         </div>
       </div>
