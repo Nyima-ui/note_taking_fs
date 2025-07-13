@@ -8,9 +8,8 @@ export const noteSchema = new Schema(
     content: {
       type: String,
     },
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+    userId: {
+      type: String,
       required: true,
     },
   },

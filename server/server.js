@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/userRoutes.js";
-import authRouter from "./routes/authRouter.js";
+import noteRouter from "./routes/noteRoutes.js";
+
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
+app.use("/api", noteRouter)
 
 app.get("/", (req, res) => {
   res.send("Hello world, we got the. fiqr not");
