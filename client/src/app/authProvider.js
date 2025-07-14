@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
 
   const api = useMemo(() => {
     const instance = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://note-taking-backend-llit.onrender.com",
     });
     if (session?.access_token) {
       instance.defaults.headers.common[
