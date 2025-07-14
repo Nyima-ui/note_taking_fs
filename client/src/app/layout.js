@@ -35,7 +35,7 @@ export const metadata = {
     card : "summary_large_image",
     title : "Take Notes", 
     description : "A simple and secure personal note-taking app.", 
-    images : ["/graph.png"]
+    images : ["/graph2.png"]
   }
 };
 
