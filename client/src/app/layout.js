@@ -23,7 +23,7 @@ export const metadata = {
      siteName : "Take Notes", 
      images : [
       {
-        url : '/graph.png', 
+        url : '/graph2.png', 
         width : 1200, 
         height : 630, 
         alt : "Take notes App", 
