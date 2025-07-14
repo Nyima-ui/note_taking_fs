@@ -4,7 +4,7 @@ import trashIcon from "../../public/trash.svg";
 import backIcon from "../../public/back.svg";
 import Image from "next/image.js";
 import { useEffect, useRef, useState, useContext } from "react";
-import { UserContext } from "@/app/AuthProvider.js";
+import { UserContext } from "@/app/Provider.js";
 
 const Notes = ({ searchText }) => {
   const { notes, updateNote, deleteNote } = useContext(UserContext);

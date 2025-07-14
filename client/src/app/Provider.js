@@ -11,11 +11,9 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { sortNotesByDate } from "@/lib/utils";
 import toast from "react-hot-toast";
-import { trackSynchronousPlatformIOAccessInDev } from "next/dist/server/app-render/dynamic-rendering";
 
 export const UserContext = createContext();
-
-const AuthProvider = ({ children }) => {
+const Provider = ({children}) => {
   const router = useRouter();
   const [session, setSession] = useState(null);
   const [notes, setNotes] = useState([]);
@@ -173,4 +171,4 @@ const AuthProvider = ({ children }) => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-export default AuthProvider;
+export default Provider;

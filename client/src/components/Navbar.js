@@ -4,7 +4,7 @@ import bars from "../../public/bars.svg";
 import search from "../../public/search.svg";
 import avatar from "../../public/avatar.svg";
 import { useContext } from "react";
-import { UserContext } from "@/app/AuthProvider";
+import { UserContext } from "@/app/Provider";
 
 const Navbar = ({ searchText, setSearchText }) => {
   const { session, signOut } = useContext(UserContext);

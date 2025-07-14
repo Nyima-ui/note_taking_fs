@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "./AuthProvider.js";
+import Provider from "./Provider";
 import Authwrapper from "./Authwrapper";
 import { Toaster } from "react-hot-toast";
 
@@ -45,9 +45,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable}  antialiased`}>
         <Toaster position="top-center"/>
-        <AuthProvider>
+        <Provider>
           <Authwrapper>{children}</Authwrapper>
-        </AuthProvider>
+        </Provider>
       </body>
     </html>
   );

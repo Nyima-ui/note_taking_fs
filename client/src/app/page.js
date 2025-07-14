@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Newnote from "@/components/Newnote";
 import Notes from "@/components/Notes";
 import { useEffect, useState, useContext } from "react";
-import { UserContext } from "./AuthProvider";
+import { UserContext } from "./Provider";
 
 export default function Home() {
   const [searchText, setSearchText] = useState("");

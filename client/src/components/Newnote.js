@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, useContext } from "react";
-import { UserContext } from "@/app/AuthProvider";
+import { UserContext } from "@/app/Provider";
 
 const Newnote = () => {
   const inputRef = useRef(null);

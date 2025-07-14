@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { UserContext } from "./AuthProvider";
+import { UserContext } from "./Provider";
 
 const Authwrapper = ({ children }) => {
   const { session } = useContext(UserContext);

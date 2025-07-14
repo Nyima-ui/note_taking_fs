@@ -2,7 +2,7 @@
 import { useState, useContext } from "react";
 import logo from "../../../public/logo.svg";
 import Image from "next/image";
-import { UserContext } from "../AuthProvider";
+import { UserContext } from "../Provider";
 
 const Page = () => {
   const [state, setState] = useState("Sign Up");
