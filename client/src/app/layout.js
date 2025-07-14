@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./AuthProvider.js";
 import Authwrapper from "./Authwrapper";
+import { Toaster } from "react-hot-toast";
 
 
 const inter = Inter({
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable}  antialiased`}>
+        <Toaster position="top-center"/>
         <AuthProvider>
           <Authwrapper>{children}</Authwrapper>
         </AuthProvider>

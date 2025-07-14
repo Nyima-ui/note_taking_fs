@@ -10,7 +10,7 @@ export default function Home() {
   const { getAllNotes, session } = useContext(UserContext);
   useEffect(() => {
     if (session?.access_token) {
-      // getAllNotes();
+      getAllNotes();
     }
   }, [session, getAllNotes]);
   return (

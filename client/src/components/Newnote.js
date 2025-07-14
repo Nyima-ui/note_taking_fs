@@ -13,7 +13,7 @@ const Newnote = () => {
 
   const expandInput = () => setIsExpanded(true);
 
-  const { saveNote } = useContext(UserContext);
+  const { saveNote, getAllNotes } = useContext(UserContext);
 
   const handleTextareaInput = () => {
     const textarea = textareaRef.current;
@@ -34,6 +34,14 @@ const Newnote = () => {
       window.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const saveNewNote = (title, content) => {
+    saveNote(title, content);
+    setIsExpanded(false);
+    setTitle("");
+    setContent("");
+    getAllNotes(); 
+  };
 
   return (
     <div
@@ -64,7 +72,7 @@ const Newnote = () => {
       >
         <button
           className="primary-btn cursor-pointer relative left-[80%]"
-          onClick={() => saveNote(title, content)}
+          onClick={() => saveNewNote(title, content)}
         >
           save
         </button>
